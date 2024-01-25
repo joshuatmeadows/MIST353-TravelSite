@@ -1,4 +1,4 @@
-﻿### README for MIST 353: Travel Site Example
+### README for MIST 353: Travel Site Example
 
 ---
 
@@ -65,10 +65,13 @@ Welcome to the MIST 353 course! In this module, we are focusing on creating a tr
 
 
 > How do I add location search to a website (i.e. what you would see on a travel site)
+
 Follow up:
+
 > Using OpenStreetMap how would I create a textbox where users type in a city, address, etc and it is converted to geographical coordinates
 
 > I have a form that directs to another page. From that new page, how can I use JS to get the form values that were submitted?
 
+> I am the instructor for a Web App Development course. In my course, we are building a travel site as an example. Write me a README given the attached pages. This implements basic geocoding and reverses geocoding via Nominatim and basic mapping using Leaflet. The main objectives are to teach JavaScript and interact with APIs. Emphasise to students the README will change based on the latest learnings so they should navigate through previous commits for full notes.
 
 *Note: This README is a living document and will be updated regularly to reflect the latest advancements and learnings in the course.*
