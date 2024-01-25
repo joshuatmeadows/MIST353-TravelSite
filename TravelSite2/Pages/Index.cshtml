@@ -4,18 +4,23 @@
     ViewData["Title"] = "Home page";
 }
 
-<form>
-    <i class="fa-solid fa-location-arrow"></i>
-    <input type="text" id="locInp" class="form-control" value="Where are you going?" />
-    <label for="startDateInp" >Start Date</label>
-    <input type="date" id="startDateInp"/>
+<form id="locationForm" action="/searchResults">  
+    <input type="text" id="locInp" value="Where are you going?" name="location" />
+    <input type="number" id="latTxt" name="latitude" step="any"/>
+    <input type="number" id="longTxt" name="longitude" step="any"/>
+    <label for="startDateInp">Start Date</label>
+    <input type="date" id="startDateInp" name="startDate"/>
     <label for="endDateInp" class="form-label">End Date</label>
-    <input type="date" id="endDateInp"/>
+    <input type="date" id="endDateInp" name="endDate"/>
     <label for="trvDrop">Travelers?</label>
-    <select name="trvDrop">
+    <select id="trvDrop" name="travelers">
         <option value="1">1 traveler</option>
         <option value="2">2 travelers</option>
         <option value="3">3 travelers</option>
     </select>
     <input type="submit" id="submitBtn" value="Search" class="btn btn-primary" />
 </form>
+
+<button id="locBtn" onclick="getLocation(latTxt,longTxt)"><i class="fa fa-location-arrow"></i></button>
+<div id="results"></div>
+<script type="module">addLocationFormListener()</script>
