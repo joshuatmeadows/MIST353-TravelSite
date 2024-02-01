@@ -42,3 +42,38 @@ function displayAddress(address) {
       //document.getElementById("results").innerHTML = JSON.stringify(address);
 
 }
+function addLocationFormListen() {
+    document.getElementById('locationForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var userInput = document.getElementById('locInp').value;
+        var latitude = document.getElementById('latTxt').value;
+        var longitude = document.getElementById('longTxt').value;
+
+        if (latitude && longitude) {
+            this.submit();
+        }
+        else {
+            getCoordinates(userInput);
+        }
+    })
+}
+
+async function getCoordinates(address) {
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${address}`);
+    const data = await response.json();
+
+    if (data.length > 0) {
+        const coords = { lat: data[0].lat, lon: data[0].lon };
+        displayCoordinates(coords);
+    } else {
+        displayCoordinates("no results found.");
+    }
+}
+
+function displayCoordinates(coords) {
+    document.getElementById('results').innerHTML = `You searched for` + JSON.stringify(coords);
+    document.getElementById('latTxt').value = coords.lat;
+    document.getElementById('longTxt').value = coords.lon;
+}
+

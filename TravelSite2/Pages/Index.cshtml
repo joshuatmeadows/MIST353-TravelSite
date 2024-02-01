@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<form action="/searchResults">
+<form id="locationForm" action="/searchResults">
     <i class="fa-solid fa-location-arrow"></i>
     <input type="text" id="locInp" name="location" class="form-control" value="Where are you going?" />
     <label for="startDateInp" >Start Date</label>
@@ -17,10 +17,17 @@
         <option value="2">2 travelers</option>
         <option value="3">3 travelers</option>
     </select>
-    <input type="number" id="latTxt" step="any" name="latitude" style="visibility:hidden;"/>
-    <input type="number" id="longTxt" step="any" name="longitude" style="visibility:hidden;" />
+    <input type="number" id="latTxt" step="any" name="latitude"/>
+    <input type="number" id="longTxt" step="any" name="longitude"/>
     <input type="submit" id="submitBtn" value="Search" class="btn btn-primary" />
 </form>
 <button id="locBtn" onclick="getLocation()"><i class="fa fa-location-arrow"></i></button>
 
-<div id="results"></div>
+<div id="results">
+
+</div>
+
+
+<script type="module">
+    addLocationFormListen()
+</script>
