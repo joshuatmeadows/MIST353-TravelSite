@@ -161,7 +161,79 @@ Begin
 END
 GO
 
+
+
 /*
 EXEC spRoomGetAvailabilityByDateRange '20240220', '20240221'
 GO
 */
+
+
+-- 14
+Create proc spHotelSearchByRadius
+@lat decimal(9,6),
+@long decimal(9,6),
+@radius int = null
+AS
+BEGIN
+	SELECT *
+	FROM Hotel
+	WHERE sqrt(power((longitude-@long),2)+power((latitude-@lat),2))*69<isnull(@radius,5)
+END
+GO
+
+EXEC spHotelSearchByRadius 40.712773, -74.005971
+GO
+
+-- 13
+
+Create or alter proc spRoomGetAvailabilityByDateRangeExcludeCart
+@startDate date,
+@endDate date,
+@hotelID int
+AS
+Begin
+	SELECT *
+	FROM (SELECT RoomID, count(AvDate) as numDays
+			FROM RoomAvailiability
+			WHERE AvDate between  @startDate
+				and @endDate
+				and RoomAvailiabilityID not in (select RoomAvailiabilityID FROM cartlines)
+			Group by RoomID
+			HAVING count(AvDate) = DATEDIFF(day,@startDate,@endDate)+1) ra
+	LEFT JOIN Room r
+	on ra.RoomID=r.RoomID
+	WHERE r.HotelID = @hotelID
+END
+GO
+
+/*
+EXEC spRoomGetAvailabilityByDateRangeExcludeCart '20240220', '20240221', 1
+GO
+*/
+
+
+-- 15
+Create or alter proc spHotelSearchByRadiusSingleDate
+@lat decimal(9,6),
+@long decimal(9,6),
+@myDate date,
+@radius int = null
+AS
+BEGIN
+		SELECT * FROM
+		(SELECT distinct H.HotelID
+		FROM Hotel H
+		INNER JOIN Room R
+		ON H.HotelID = R.HotelID
+		INNER Join RoomAvailiability RA
+		ON R.RoomID = RA.RoomID
+				WHERE sqrt(power((longitude-@long),2)+power((latitude-@lat),2))*69<5
+				and RA.AvDate=@myDate) mysubquery
+				inner join Hotel
+			on mysubquery.HotelID = Hotel.HotelID
+END
+GO
+
+EXEC spHotelSearchByRadiusSingleDate 40.712773, -74.005971, '20240220'
+GO
