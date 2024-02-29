@@ -126,3 +126,20 @@ function addLocationFormListener() {
         }
     });
 }
+
+async function displayHotelDetails(hotelId) {
+    // Get the hotel details from the server using a fetch request.
+    const response = await fetch(`https://localhost:7236/api/Hotels/${hotelId}`)
+    const data = await response.json();
+
+
+    // change the HTML and make visible
+    document.getElementById('hotelName').innerHTML = data[0].name;
+    document.getElementById('hotelName').style.visibility = 'visible';
+
+    document.getElementById('hotelAddress').innerHTML = data[0].address + ", " + data[0].city + ", " + data[0].state + ", " + data[0].zipcode + ", " + data[0].country;
+    document.getElementById('hotelAddress').style.visibility = 'visible';
+
+    document.getElementById('hotelContact').innerHTML = data[0].phone + ", " + data[0].email;
+    document.getElementById('hotelContact').style.visibility = 'visible';
+}

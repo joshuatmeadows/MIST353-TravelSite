@@ -13,6 +13,16 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowMyRazorPagesApp",
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:7236") // Specify the exact origin
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 

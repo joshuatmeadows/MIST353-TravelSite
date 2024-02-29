@@ -16,6 +16,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+options.AddPolicy("AllowMyRazorPagesApp",
+    builder =>
+{
+builder.WithOrigins("https://localhost:7146") // Specify the exact origin
+       .AllowAnyHeader()
+       .AllowAnyMethod();
+});
+});
 
 var app = builder.Build();
 
@@ -27,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowMyRazorPagesApp");
 
 app.UseAuthorization();
 
