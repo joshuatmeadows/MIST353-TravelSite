@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelSite2", "TravelSite2\TravelSite2.csproj", "{3C8061C5-658E-4284-B238-1C2CC5F2019B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelSite2API", "TravelSite2API\TravelSite2API.csproj", "{E983EF51-6659-4F04-AC74-DCCAB955B6FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelSite2API", "TravelSite2API\TravelSite2API.csproj", "{84D6B90F-04B0-4202-8696-5327F55CE3A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{3C8061C5-658E-4284-B238-1C2CC5F2019B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C8061C5-658E-4284-B238-1C2CC5F2019B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C8061C5-658E-4284-B238-1C2CC5F2019B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E983EF51-6659-4F04-AC74-DCCAB955B6FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E983EF51-6659-4F04-AC74-DCCAB955B6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E983EF51-6659-4F04-AC74-DCCAB955B6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E983EF51-6659-4F04-AC74-DCCAB955B6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84D6B90F-04B0-4202-8696-5327F55CE3A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84D6B90F-04B0-4202-8696-5327F55CE3A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84D6B90F-04B0-4202-8696-5327F55CE3A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84D6B90F-04B0-4202-8696-5327F55CE3A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
