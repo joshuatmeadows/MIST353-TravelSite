@@ -77,3 +77,11 @@ function displayCoordinates(coords) {
     document.getElementById('longTxt').value = coords.lon;
 }
 
+async function displayHotelDetails(hotelId) {
+    const response = await fetch(`https://localhost:7095/api/Hotels/${hotelId}`);
+    const data = await response.json();
+    document.getElementById('hotelName').innerHTML = data[0].name;
+    document.getElementById('hotelName').style.visibility = "visible";
+
+}
+

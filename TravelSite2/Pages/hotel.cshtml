@@ -1,0 +1,12 @@
+﻿@page
+@model TravelSite2.Pages.hotelModel
+@{
+    var hotelId = HttpContext.Request.Query["hotelId"];
+}
+<h2 id="hotelName" style="visibility: hidden;"></h2>
+<div id="hotelAddress" style="visibility: hidden;"></div>
+<div id="hotelContact" style="visibility: hidden;"></div>
+
+<script type="module">
+    displayHotelDetails(@hotelId)
+</script>
