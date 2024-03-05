@@ -237,3 +237,47 @@ GO
 
 EXEC spHotelSearchByRadiusSingleDate 40.712773, -74.005971, '20240220'
 GO
+
+-- 16
+Create or alter proc spHotelSearchByRadiusDateRange
+@lat decimal(9,6),
+@long decimal(9,6),
+@startDate date,
+@endDate date,
+@radius int = null
+AS
+BEGIN
+		SELECT Hotel.HotelID
+      ,[Address]
+      ,[Zipcode]
+      ,[City]
+      ,[State]
+      ,[Country]
+      ,[Name]
+      ,[Phone]
+      ,[HotelType]
+      ,[email]
+      ,[latitude]
+      ,[longitude] FROM
+		(SELECT distinct H.HotelID
+		FROM Hotel H
+		INNER JOIN Room R
+		ON H.HotelID = R.HotelID
+		INNER Join (SELECT RoomID, count(AvDate) as numDays
+			FROM RoomAvailiability
+			WHERE AvDate between  @startDate
+				and @endDate
+				and RoomAvailiabilityID not in (select RoomAvailiabilityID FROM cartlines)
+			Group by RoomID
+			HAVING count(AvDate) = DATEDIFF(day,@startDate,@endDate)+1) ra
+		ON R.RoomID = RA.RoomID
+				WHERE sqrt(power((longitude-@long),2)+power((latitude-@lat),2))*69<5) mysubquery
+				inner join Hotel
+			on mysubquery.HotelID = Hotel.HotelID
+END
+GO
+
+/*
+EXEC spHotelSearchByRadiusDateRange 40.712773, -74.005971, '20240220', '20240222'
+GO
+*/
