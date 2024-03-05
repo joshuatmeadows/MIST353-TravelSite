@@ -18,5 +18,15 @@ namespace TravelSite2API.Repositiories
             var hotelDetails = await Task.Run(() => _dbContextClass.Hotel.FromSqlRaw("exec spHotelGetDetails @hotelid", param).ToListAsync());
             return hotelDetails;
         }
+        public async Task<List<Hotel>> HotelSearchByRadiusDateRange(decimal latitude, decimal longitude, DateTime startDate, DateTime endDate)
+        {
+            var latparam = new SqlParameter("@lat", latitude);
+            var lonparam = new SqlParameter("@long", longitude);
+            var startdate = new SqlParameter("@startDate", startDate);
+            var enddate = new SqlParameter("@endDate", endDate);
+
+            var hotelDetails = await Task.Run(() => _dbContextClass.Hotel.FromSqlRaw("exec spHotelSearchByRadiusDateRange @lat, @long, @startdate, @enddate", latparam, lonparam, startdate, enddate).ToListAsync());
+            return hotelDetails;
+        }
     }
 }

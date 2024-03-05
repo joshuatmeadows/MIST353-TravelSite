@@ -1,6 +1,18 @@
 ﻿@page
 @model TravelSite2.Pages.searchResultsModel
 @{
+    var lat = HttpContext.Request.Query["latitude"];
+    var longitude = HttpContext.Request.Query["longitude"];
+var checkIn = HttpContext.Request.Query["startDate"];
+var checkOut = HttpContext.Request.Query["endDate"];
+
 }
 <h1>Search Results</h1>
 @Html.Raw(Model.JsonData)
+<div id="hotelResults" style="visibility:hidden;">
+
+</div>
+
+<script type="module">
+displayHotelResults(@lat, @longitude, @checkIn, @checkOut);
+</script>

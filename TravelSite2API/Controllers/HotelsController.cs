@@ -23,5 +23,17 @@ namespace TravelSite2API.Controllers
             }
             return hotelDetails;
         }
+        [HttpGet("api/HotelSearchByRadiusDateRange/latitude={latitude}&longitude={longitude}&startdate={startDate}&enddate={endDate}")]
+        public async Task<List<Hotel>> HotelSearchByRadiusDateRange(decimal latitude, decimal longitude, DateTime startDate, DateTime endDate)
+        {
+            var hotelDetails = await hotelService.HotelSearchByRadiusDateRange(latitude, longitude, startDate, endDate);
+            if (hotelDetails == null)
+            {
+                //return NotFound();
+            }
+            return hotelDetails;
+        }
+
+
     }
 }
