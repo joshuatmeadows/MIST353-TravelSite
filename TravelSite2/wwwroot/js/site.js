@@ -88,9 +88,11 @@ async function displayHotelDetails(hotelId) {
 async function displaySearchResults(latitude, longitude, startDate, endDate) {
     const response = await fetch(`https://localhost:7095/api/Hotels/api/HotelSearchByRadiusDateRange/latitude=${latitude}&longitude=${longitude}&startdate=${startDate}&enddate=${endDate}`);
     const data = await response.json();
-    const innerHtml="";
-    for (let i = 0; i < length(data); i++) {
-        innerHtml += `<div style="card"><a href="https://localhost:7146/hotel?hotelid=${data[i].hotelId}">${data[i].name}</a></div>`
+    var innerHtml="";
+    for (let i = 0; i < data.length; i++) {
+        innerHtml += `<div style="card"><a href="https://localhost:7146/hotel?hotelid=${data[i].hotelID}">${data[i].name}</a></div>`
     }
+    document.getElementById("hotelResults").innerHTML = innerHtml;
+    document.getElementById('hotelResults').style.visibility = "visible";
 }
 

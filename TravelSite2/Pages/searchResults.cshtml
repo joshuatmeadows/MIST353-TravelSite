@@ -3,8 +3,8 @@
 @{
     var lat = HttpContext.Request.Query["latitude"];
     var longitude = HttpContext.Request.Query["longitude"];
-var checkIn = HttpContext.Request.Query["startDate"];
-var checkOut = HttpContext.Request.Query["endDate"];
+    var checkIn = HttpContext.Request.Query["checkIn"];
+    var checkOut = HttpContext.Request.Query["checkOut"];
 
 }
 <h1>Search Results</h1>
@@ -14,5 +14,5 @@ var checkOut = HttpContext.Request.Query["endDate"];
 </div>
 
 <script type="module">
-displayHotelResults(@lat, @longitude, @checkIn, @checkOut);
+    displaySearchResults(@lat, @longitude, "@checkIn", "@checkOut");
 </script>
