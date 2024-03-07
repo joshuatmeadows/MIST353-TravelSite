@@ -19,14 +19,13 @@ namespace TravelSiteAPI.Repositories
             return hotelDetails;
         }
 
-        public Task<List<Hotel>> HotelSearchByRadiusDateRange(int hotelid, decimal Latitude, decimal Longitude, DateTime startDate, DateTime endDate)
+        public Task<List<Hotel>> HotelSearchByRadiusDateRange(decimal Latitude, decimal Longitude, DateTime startDate, DateTime endDate)
         {
-            var HotelIdParm = new SqlParameter("@HotelID", hotelid);
             var LatitudeParm = new SqlParameter("@Latitude", Latitude);
             var LongitudeParm = new SqlParameter("@Longitude", Longitude);
             var StartDateParm = new SqlParameter("@StartDate", startDate);
             var EndDateParm = new SqlParameter("@EndDate", endDate);
-            var hotelDetails = _dbContext.Hotel.FromSqlRaw("spHotelSearchByRadiusDateRange @HotelID, @Latitude, @Longitude, @StartDate, @EndDate", HotelIdParm, LatitudeParm, LongitudeParm, StartDateParm, EndDateParm).ToListAsync();
+            var hotelDetails = _dbContext.Hotel.FromSqlRaw("spHotelSearchByRadiusDateRange @Latitude, @Longitude, @StartDate, @EndDate", LatitudeParm, LongitudeParm, StartDateParm, EndDateParm).ToListAsync();
             return hotelDetails;
         }
     }

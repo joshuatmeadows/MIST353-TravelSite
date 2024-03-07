@@ -143,3 +143,13 @@ async function displayHotelDetails(hotelId) {
     document.getElementById('hotelContact').innerHTML = data[0].phone + ", " + data[0].email;
     document.getElementById('hotelContact').style.visibility = 'visible';
 }
+
+async function displaySearchResults(latitude, longitude, startDate, endDate) {
+    const response = await fetch(`https://localhost:7236/api/Hotels/HotelSearchByRadiusDateRange/latitude=${latitude}&longitude=${longitude}&startdate=${startDate}&enddate=${endDate}`);
+    const data = await response.json();
+    var innerHtml = "";
+    for (let i = 0; i < data.length; i++) {
+        innerHtml += `<div style="card"><a href="https://localhost:7146/hotel?hotelid=${data[i].hotelID}">${data[i].name}</a></div>`;
+    }
+    document.getElementById('searchResults').innerHTML = innerHtml;
+}

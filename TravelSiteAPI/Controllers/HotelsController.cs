@@ -24,10 +24,10 @@ namespace TravelSiteAPI.Controllers
             }
             return hotelDetails;
         }
-        [HttpGet("{hotelid}/{Latitude}/{Longitude}/{startDate}/{endDate}")]
-        public async Task<ActionResult<List<Hotel>>> HotelSearchByRadiusDateRange(int hotelid, decimal Latitude, decimal Longitude, DateTime startDate, DateTime endDate)
+        [HttpGet("HotelSearchByRadiusDateRange/latitude={latitude}&longitude={longitude}&startdate={startDate}&enddate={endDate}")]
+        public async Task<ActionResult<List<Hotel>>> HotelSearchByRadiusDateRange(decimal Latitude, decimal Longitude, DateTime startDate, DateTime endDate)
         {
-            var hotelDetails = await _hotelService.HotelSearchByRadiusDateRange(hotelid, Latitude, Longitude, startDate, endDate);
+            var hotelDetails = await _hotelService.HotelSearchByRadiusDateRange( Latitude, Longitude, startDate, endDate);
             if (hotelDetails == null)
             {
                 return NotFound();

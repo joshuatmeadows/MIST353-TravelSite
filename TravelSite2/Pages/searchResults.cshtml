@@ -1,8 +1,13 @@
 ﻿@page
 @model TravelSite2.Pages.searchResultsModel
 @{
+    var latitude = Request.Query["latitude"];
+    var longitude = Request.Query["longitude"];
+    var startDate = Request.Query["startDate"];
+    var endDate = Request.Query["endDate"];
 }
+
 <div id="results"></div>
 <div id="map" style="height:100px;"></div>
-<script type="module">showResults()</script>
-@Html.Raw(Model.JsonData)
+<div id="searchResults"></div>
+<script type="module">displaySearchResults(@latitude, @longitude, "@startDate", "@endDate");</script>
