@@ -127,6 +127,7 @@ function addLocationFormListener() {
     });
 }
 
+// Function to display the hotel details based on the hotel ID.
 async function displayHotelDetails(hotelId) {
     // Get the hotel details from the server using a fetch request.
     const response = await fetch(`https://localhost:7236/api/Hotels/${hotelId}`)
@@ -144,6 +145,7 @@ async function displayHotelDetails(hotelId) {
     document.getElementById('hotelContact').style.visibility = 'visible';
 }
 
+// Function to display search results based on the user's input.
 async function displaySearchResults(latitude, longitude, startDate, endDate) {
     const response = await fetch(`https://localhost:7236/api/Hotels/HotelSearchByRadiusDateRange/latitude=${latitude}&longitude=${longitude}&startdate=${startDate}&enddate=${endDate}`);
     const data = await response.json();
@@ -152,4 +154,17 @@ async function displaySearchResults(latitude, longitude, startDate, endDate) {
         innerHtml += `<div style="card"><a href="https://localhost:7146/hotel?hotelid=${data[i].hotelID}">${data[i].name}</a></div>`;
     }
     document.getElementById('searchResults').innerHTML = innerHtml;
+}
+
+// Function to fetch hotel ratings based on the hotel ID.
+async function getHotelRatings(hotelId) {
+    const response = await fetch(`https://localhost:7236/api/HotelRatings/${hotelId}`);
+    const data = await response.json();
+    var innerHtml = "<h3>Ratings</h3><table><tr><th>Rating</th><th>Comments</th></tr>";
+    for (let i = 0; i < data.length; i++) {
+        innerHtml += `<tr><td>${data[i].rating}</td><td>${data[i].comments}</td></tr>`;
+    }
+innerHtml += "</table>";
+    document.getElementById('hotelRatings').innerHTML = innerHtml;
+    document.getElementById('hotelRatings').style.visibility = 'visible';
 }
