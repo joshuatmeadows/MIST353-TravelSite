@@ -151,7 +151,7 @@ async function displaySearchResults(latitude, longitude, startDate, endDate) {
     const data = await response.json();
     var innerHtml = "";
     for (let i = 0; i < data.length; i++) {
-        innerHtml += `<div style="card"><a href="https://localhost:7146/hotel?hotelid=${data[i].hotelID}">${data[i].name}</a></div>`;
+        innerHtml += `<div style="card"><a href="https://localhost:7146/hotel?hotelid=${data[i].hotelID}&startDate=${startDate}&endDate=${endDate}">${data[i].name}</a></div>`;
     }
     document.getElementById('searchResults').innerHTML = innerHtml;
 }
@@ -160,7 +160,7 @@ async function displaySearchResults(latitude, longitude, startDate, endDate) {
 async function getHotelRatings(hotelId) {
     const response = await fetch(`https://localhost:7236/api/HotelRatings/${hotelId}`);
     const data = await response.json();
-    var innerHtml = "<h3>Ratings</h3><table><tr><th>Rating</th><th>Comments</th></tr>";
+    var innerHtml = '<h3>Ratings</h3><table class="table"><tr><th>Rating</th><th>Comments</th></tr>';
     for (let i = 0; i < data.length; i++) {
         innerHtml += `<tr><td>${data[i].rating}</td><td>${data[i].comments}</td></tr>`;
     }
@@ -168,3 +168,16 @@ innerHtml += "</table>";
     document.getElementById('hotelRatings').innerHTML = innerHtml;
     document.getElementById('hotelRatings').style.visibility = 'visible';
 }
+
+// Function to get available rooms based on the hotel ID and date range.
+async function getAvailableRooms(startDate, endDate, hotelId) {
+    const response = await fetch(`https://localhost:7236/api/Rooms/RoomGetAvailabilityByDateRangeAndHotelID/${startDate}/${endDate}/${hotelId}`);
+        const data = await response.json();
+        var innerHtml = '<h3>Available Rooms</h3><table class="table"><tr><th>Room Type</th><th>Number of Beds</th></tr>';
+        for (let i = 0; i < data.length; i++) {
+            innerHtml += `<tr><td>${data[i].roomType}</td><td>${data[i].numBeds}</td></tr>`;
+        }
+        innerHtml += "</table>";
+        document.getElementById('availableRooms').innerHTML = innerHtml;
+        document.getElementById('availableRooms').style.visibility = 'visible';
+    }
