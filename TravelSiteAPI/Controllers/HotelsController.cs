@@ -34,5 +34,15 @@ namespace TravelSiteAPI.Controllers
             }
             return hotelDetails;
         }
+        [HttpPost]
+        public async Task<ActionResult<int>> AddHotel(Hotel hotel)
+        {
+            var hotelDetails = await _hotelService.AddHotel(hotel);
+            if (hotelDetails == 0)
+            {
+                return NotFound();
+            }
+            return hotelDetails;
+        }
     }
 }

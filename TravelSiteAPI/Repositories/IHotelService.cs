@@ -6,5 +6,6 @@ namespace TravelSiteAPI.Repositories
     {
         public Task<List<Hotel>> GetHotelDetails(int hotelid);
         public Task<List<Hotel>> HotelSearchByRadiusDateRange( decimal Latitude, decimal Longitude, DateTime startDate, DateTime endDate);
+        public Task<int> AddHotel(Hotel hotel);
     }
 }
