@@ -1,0 +1,23 @@
+﻿@page
+@model TravelSite2.Pages.photoUploaderModel
+@{
+}
+
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <label for="HotelID">Hotel ID:</label>
+        <input type="number" name="HotelID" required />
+    </div>
+    <div>
+        <label for="Photo">Photo:</label>
+        <input type="file" name="Photo" required />
+    </div>
+    <div>
+        <label for="IsPrimary">Is Primary:</label>
+        <select name="IsPrimary">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+    <button type="submit">Upload</button>
+</form>
