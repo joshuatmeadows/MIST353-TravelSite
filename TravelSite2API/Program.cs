@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IHotelService, HotelService>();
+builder.Services.AddScoped<IHotelRatingService, HotelRatingService>();
 builder.Services.AddDbContext<DbContextClass>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

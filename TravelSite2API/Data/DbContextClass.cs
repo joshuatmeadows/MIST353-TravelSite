@@ -8,5 +8,6 @@ namespace TravelSite2API.Data
         public DbContextClass(DbContextOptions<DbContextClass> options) : base(options)
         { }
         public DbSet<Hotel> Hotel { get; set; }
+        public DbSet<HotelRating> HotelRating { get; set; }
     }
 }

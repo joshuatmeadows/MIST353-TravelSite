@@ -82,6 +82,10 @@ async function displayHotelDetails(hotelId) {
     const data = await response.json();
     document.getElementById('hotelName').innerHTML = data[0].name;
     document.getElementById('hotelName').style.visibility = "visible";
+    document.getElementById('hotelAddress').innerHTML = data[0].address;
+    document.getElementById('hotelAddress').style.visibility = "visible";
+    document.getElementById('hotelContact').innerHTML = data[0].phone + ", " + data[0].email;
+    document.getElementById('hotelContact').style.visibility = "visible";
 
 }
 
@@ -96,3 +100,15 @@ async function displaySearchResults(latitude, longitude, startDate, endDate) {
     document.getElementById('hotelResults').style.visibility = "visible";
 }
 
+// function to fetch hotel reviews
+async function getHotelRatings(hotelid) {
+    const response = await fetch(`https://localhost:7095/apiHotelRatings/${hotelid}`);
+    const data = await response.json();
+    var innerHtml = '<table class="table"><tr><th>Rating</th><th>Comments</th></tr>';
+    for (let i = 0; i < data.length; i++) {
+        innerHtml += `<tr><td>${data[i].rating}</td><td>${data[i].comments}</td></tr>`
+    }
+    innerHtml += "</table>";
+    document.getElementById('hotelRatings').innerHTML = innerHtml;
+    document.getElementById('hotelRatings').style.visibility = "visible";
+}
