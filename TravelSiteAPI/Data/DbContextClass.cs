@@ -11,5 +11,6 @@ namespace TravelSiteAPI.Data
         }
         public DbSet<Hotel> Hotel { get; set; }
         public DbSet<HotelRating> HotelRating { get; set; }
+        public DbSet<Room> Room { get; set; }
     }
 }
