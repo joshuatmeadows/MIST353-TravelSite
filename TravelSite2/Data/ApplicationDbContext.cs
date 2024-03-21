@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TravelSiteAPI.Entities;
 
 namespace TravelSite2.Data
 {
@@ -9,5 +10,6 @@ namespace TravelSite2.Data
             : base(options)
         {
         }
+        public DbSet<TravelSiteAPI.Entities.Hotel> Hotel { get; set; } = default!;
     }
 }
