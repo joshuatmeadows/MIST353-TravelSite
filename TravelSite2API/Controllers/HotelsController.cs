@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using TravelSite2API.Entities;
 using TravelSite2API.Repositiories;
 
@@ -33,7 +34,12 @@ namespace TravelSite2API.Controllers
             }
             return hotelDetails;
         }
-
+        [HttpPost]
+        public async Task<ActionResult<int>> AddHotel(Hotel hotel)
+        {
+            var hotelDetails = await hotelService.AddHotel(hotel);
+            return hotelDetails;
+        }
 
     }
 }
