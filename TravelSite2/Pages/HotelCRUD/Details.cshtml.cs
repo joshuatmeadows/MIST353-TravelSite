@@ -28,7 +28,7 @@ namespace TravelSite2.Pages.Test
                 return NotFound();
             }
 
-            var hotel = await _context.Hotel.FirstOrDefaultAsync(m => m.HotelID == id);
+            var hotel = await _context.Hotel.FirstOrDefaultAsync(m => m.HotelId == id);
             if (hotel == null)
             {
                 return NotFound();

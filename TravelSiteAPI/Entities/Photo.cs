@@ -4,18 +4,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TravelSiteAPI.Entities;
 
-public partial class HotelRating
+public partial class Photo
 {
     [Key]
-    public int HotelRatingsId { get; set; }
+    public int HotelPhotoId { get; set; }
 
     public int HotelId { get; set; }
 
-    public int Rating { get; set; }
+    public byte[]? Photo1 { get; set; }
 
-    public string? UserId { get; set; }
-
-    public string? Comments { get; set; }
+    public bool? IsPrimary { get; set; }
 
     public virtual Hotel Hotel { get; set; } = null!;
 }

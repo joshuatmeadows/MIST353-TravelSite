@@ -30,7 +30,7 @@ namespace TravelSite2.Pages.Test
                 return NotFound();
             }
 
-            var hotel =  await _context.Hotel.FirstOrDefaultAsync(m => m.HotelID == id);
+            var hotel =  await _context.Hotel.FirstOrDefaultAsync(m => m.HotelId == id);
             if (hotel == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace TravelSite2.Pages.Test
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!HotelExists(Hotel.HotelID))
+                if (!HotelExists(Hotel.HotelId))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace TravelSite2.Pages.Test
 
         private bool HotelExists(int id)
         {
-            return _context.Hotel.Any(e => e.HotelID == id);
+            return _context.Hotel.Any(e => e.HotelId == id);
         }
     }
 }
